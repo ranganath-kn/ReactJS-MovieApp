@@ -11,33 +11,24 @@ jobs:
     steps:
       - name: Initiate Pipeline
         run: |
-          echo "::group:: Initiate Pipeline Execution"
           whoami
           pwd
           ls -ltr
-          echo "::endgroup::"
       
       - name: Repository Checkout
         uses: actions/checkout@v3
 
       - name: Build Artifact
         run: |
-          echo "::group:: Build Artifact Execution"
           npm install
           CI=false npm run build
           ls -ltr
-          echo "::endgroup::"
 
-      - name: Set Up Sonar Scanner
-        uses: sonarsource/sonarcloud-github-action@v1
-        with:
-          sonarQubeUrl: http://44.217.100.193:9000/
-
-      - name: Sonar Scan Analysis
+      - name: Sonar Scan 
         env:
-          SONAR_TOKEN: ${{ secrets.SONARQUBE_PASSWORD }}
+          SONARQUBE_URL: ${{ secrets.SONARQUBE_URL }}
+          SONARQUBE_USERNAME: ${{ secrets.SONARQUBE_USERNAME }}
+          SONARQUBE_PASSWORD: ${{ secrets.SONARQUBE_PASSWORD }}
         run: |
-          sonar-scanner \
-            -Dsonar.login=${{ secrets.SONARQUBE_USERNAME }} \
-            -Dsonar.password=${{ secrets.SONARQUBE_PASSWORD }}
+          npm run sonar
 

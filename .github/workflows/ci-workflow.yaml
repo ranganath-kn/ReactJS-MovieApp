@@ -30,6 +30,7 @@ jobs:
     steps:
       - name: Build Artifact
         run: |
+          ls -ltr
           npm install
           CI=false npm run build
           ls -ltr

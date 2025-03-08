@@ -30,7 +30,5 @@ jobs:
           SONARQUBE_USERNAME: ${{ secrets.SONARQUBE_USERNAME }}
           SONARQUBE_PASSWORD: ${{ secrets.SONARQUBE_PASSWORD }}
         run: |
-          npm run sonar -- --sonar.host.url=${{ secrets.SONARQUBE_URL }} \
-                          --sonar.login=${{ secrets.SONARQUBE_USERNAME }} \
-                          --sonar.password=${{ secrets.SONARQUBE_PASSWORD }}
+          npm run sonar -Dsonar.host.url=${{ secrets.SONARQUBE_URL }} -Dsonar.login=${{ secrets.SONARQUBE_USERNAME }} -Dsonar.password=${{ secrets.SONARQUBE_PASSWORD }}
 

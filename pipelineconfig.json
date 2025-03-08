@@ -1,0 +1,19 @@
+{
+    "appname":"usepopcorn",
+    "technology": "reactjs",
+    "build":{
+        "container": false,
+        "buildType":"npm",
+        "buildDirectory": "build",
+        "artifactory": "jfrog"
+    },
+    "qualitygates":{
+        "sonarProjectKey": "usepopcorn",
+        "sonarEnforcement": true,
+        "trivyThreshold": "high",
+        "trivyEnforcement": false
+    },
+    "deployment":{
+        "deployType": "nginx"
+    }
+}

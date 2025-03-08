@@ -1,0 +1,25 @@
+name: CI Workflow
+on: [push]
+
+jobs:
+    CI-Execution:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Initiate Pipeline
+              run: |
+                echo "::group:: Initiate Pipeline"
+                sh "whoami"
+                sh "pwd"
+                sh "ls -la"
+                sh "::endgroup::"
+
+            - name: Checkout Repository Code
+              run: actions/checkout@v3
+
+            - name: Build Artifact
+              run: |
+                echo "::group:: Build Artifact"
+                sh "npm install"
+                sh "npm run build"
+                sh "ls -la"
+                echo "::endgroup::"

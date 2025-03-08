@@ -24,10 +24,7 @@ jobs:
           CI=false npm run build
           ls -ltr
 
-      - name: Sonar Scan 
-        env:
-          SONARQUBE_URL: ${{ secrets.SONARQUBE_URL }}
-          SONARQUBE_PASSWORD: ${{ secrets.SONARQUBE_PASSWORD }}
+      - name: Sonar Scan
         run: |
-          npm run sonar -Dsonar.host.url=http://44.217.100.193:9000/ -Dsonar.login=${{ secrets.SONARQUBE_PASSWORD }}
+          npm run sonar
 

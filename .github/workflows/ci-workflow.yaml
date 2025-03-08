@@ -6,7 +6,7 @@ defaults:
     shell: bash 
 
 jobs:
-  Initiate-Pipeline:
+  CI-Pipeline-Workflow:
     runs-on: ubuntu-latest
     steps:
       - name: Initiate Pipeline
@@ -16,29 +16,20 @@ jobs:
           pwd
           ls -ltr
           echo "::endgroup::"
-
-  Repository-Checkout:
-    runs-on: ubuntu-latest
-    needs: Initiate-Pipeline
-    steps:
+      
       - name: Repository Checkout
         uses: actions/checkout@v3
-  
-  Build-Artifact:
-    runs-on: ubuntu-latest
-    needs: Repository-Checkout
-    steps:
+
       - name: Build Artifact
         run: |
-          ls -ltr
+          echo "::group:: Build Artifact Execution"
           npm install
           CI=false npm run build
           ls -ltr
+          echo "::endgroup::"
 
-  Sonar-Scan:
-    runs-on: ubuntu-latest
-    needs: Build-Artifact
-    steps:
       - name: Sonar Scan
         run: |
+          echo "::group:: Sonar Scan Execution"
           npm run sonar
+          echo "::endgroup::"

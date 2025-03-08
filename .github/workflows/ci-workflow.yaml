@@ -27,8 +27,7 @@ jobs:
       - name: Sonar Scan 
         env:
           SONARQUBE_URL: ${{ secrets.SONARQUBE_URL }}
-          SONARQUBE_USERNAME: ${{ secrets.SONARQUBE_USERNAME }}
           SONARQUBE_PASSWORD: ${{ secrets.SONARQUBE_PASSWORD }}
         run: |
-          npm run sonar -Dsonar.host.url=${{ secrets.SONARQUBE_URL }} -Dsonar.login=${{ secrets.SONARQUBE_USERNAME }} -Dsonar.password=${{ secrets.SONARQUBE_PASSWORD }}
+          npm run sonar -Dsonar.host.url=http://44.217.100.193:9000/ -Dsonar.login=${{ secrets.SONARQUBE_PASSWORD }}
 

@@ -8,9 +8,10 @@ jobs:
             - name: Initiate Pipeline
               run: |
                 echo "::group:: Initiate Pipeline"
-                sh "pwd"
-                sh "ls -la"
-                sh "::endgroup::"
+                whoami
+                pwd
+                ls -la
+                echo "::endgroup::"
 
             - name: Checkout Repository Code
               run: actions/checkout@v3
@@ -18,7 +19,7 @@ jobs:
             - name: Build Artifact
               run: |
                 echo "::group:: Build Artifact"
-                sh "npm install"
-                sh "npm run build"
-                sh "ls -la"
+                npm install
+                npm run build
+                ls -ls
                 echo "::endgroup::"

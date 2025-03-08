@@ -28,8 +28,16 @@ jobs:
           ls -ltr
           echo "::endgroup::"
 
-      - name: Sonar Scan
+      - name: Set Up Sonar Scanner
+        uses: sonarsource/sonarcloud-github-action@v1
+        with:
+          sonarQubeUrl: http://44.217.100.193:9000/
+
+      - name: Sonar Scan Analysis
+        env:
+          SONAR_TOKEN: ${{ secrets.SONARQUBE_PASSWORD }}
         run: |
-          echo "::group:: Sonar Scan Execution"
-          npm run sonar
-          echo "::endgroup::"
+          sonar-scanner \
+            -Dsonar.login=${{ secrets.SONARQUBE_USERNAME }} \
+            -Dsonar.password=${{ secrets.SONARQUBE_PASSWORD }}
+

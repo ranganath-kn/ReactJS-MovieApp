@@ -20,6 +20,6 @@ jobs:
               run: |
                 echo "::group:: Build Artifact"
                 npm install
-                npm run build
+                CI=false npm run build
                 ls -la
                 echo "::endgroup::"
